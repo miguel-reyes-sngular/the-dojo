@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useSignup } from '../../hooks/useSignup'
 import './Signup.css'
 
 export const Signup = () => {
@@ -7,6 +8,7 @@ export const Signup = () => {
   const [displayName, setDisplayName] = useState('')
   const [thumbnail, setThumbnail] = useState(null)
   const [thumbnailError, setThumbnailError] = useState(null)
+  const { signup, isPending, error } = useSignup()
 
   const handleFileChange = (e) => {
     setThumbnail(null)
@@ -35,7 +37,8 @@ export const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email, password, displayName, thumbnail)
+    signup(email, password, displayName, thumbnail)
+    //! the order of the arguments must be the same as in the file 'useSignup.js' on function 'signup'
   }
 
   return (
@@ -48,6 +51,7 @@ export const Signup = () => {
           value={email}
           type="email"
           required
+          autoComplete='currentEmail'
         />
       </label>
       <label>
@@ -57,6 +61,7 @@ export const Signup = () => {
           value={password}
           type="password"
           required
+          autoComplete='currentPassword'
         />
       </label>
       <label>
@@ -77,7 +82,9 @@ export const Signup = () => {
         />
         {thumbnailError && <div className="error">{thumbnailError}</div>}
       </label>
-      <button className="btn">Sign up</button>
+      {!isPending && <button className="btn">Sign up</button>}
+      {isPending && <button className="btn" disabled>Loading...</button>}
+      {error && <div className="error">{error}</div>}
     </form>
   )
 }
