@@ -1,4 +1,4 @@
-import styles from './Create.css'
+import './Create.css'
 
 export const Create = () => {
   return (

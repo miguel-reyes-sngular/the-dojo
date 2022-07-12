@@ -1,4 +1,4 @@
-import styles from './Login.css'
+import './Login.css'
 
 export const Login = () => {
   return (
