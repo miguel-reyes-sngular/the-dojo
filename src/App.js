@@ -8,6 +8,7 @@ import { Navbar } from './components/Navbar'
 import { Project } from './pages/project/Project'
 import { Sidebar } from './components/Sidebar'
 import { Signup } from './pages/signup/Signup'
+import { OnlineUsers } from './components/OnlineUsers'
 
 import './App.css';
 
@@ -44,6 +45,7 @@ function App() {
               </Route>
             </Switch>
           </div>
+          {user && <OnlineUsers />}
       </BrowserRouter>
       )}
     </div>
