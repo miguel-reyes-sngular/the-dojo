@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useLogin } from '../../hooks/useLogin'
 
 import './Login.css'
 
@@ -6,9 +7,11 @@ export const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  const { login, isPending, error } = useLogin()
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email, password)
+    login(email, password)
   }
 
   return (
@@ -34,10 +37,9 @@ export const Login = () => {
           autoComplete='currentPassword'
         />
       </label>
-      <button className="btn">Login</button>
-      {/* {!isPending && <button className="btn">Login</button>}
+      {!isPending && <button className="btn">Login</button>}
       {isPending && <button className="btn" disabled>Loading...</button>}
-      {error && <div className="error">{error}</div>} */}
+      {error && <div className="error">{error}</div>}
     </form>
   )
 }
