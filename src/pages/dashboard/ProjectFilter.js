@@ -1,13 +1,8 @@
-import { useState } from "react";
-
 const filterList = ['all', 'mine', 'development', 'design', 'marketing', 'sales']
 
-export const ProjectFilter = () => {
-  const [currentFilter, setCurrentFilter] = useState('all')
-
+export const ProjectFilter = ({ currentFilter, changeFilter }) => {
   const handleClick = (newFilter) => {
-    console.log(newFilter);
-    setCurrentFilter(newFilter)
+    changeFilter(newFilter);
   }
 
   return (
